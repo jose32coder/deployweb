@@ -1,0 +1,310 @@
+/* Global effects and utility classes for Deploy project */
+
+/**
+ * Glassmorphism effect
+ * Frosted glass look with blur and backdrop filter
+ */
+.glass {
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-sm {
+  background: rgba(9, 9, 11, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.glass-lg {
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/**
+ * Glow text effects
+ * Neon-style text with shadow glow
+ */
+.glow-text {
+  color: #00f0ff;
+  text-shadow:
+    0 0 10px rgba(0, 240, 255, 0.5),
+    0 0 20px rgba(0, 240, 255, 0.3),
+    0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.glow-text-sm {
+  color: #00f0ff;
+  text-shadow:
+    0 0 6px rgba(0, 240, 255, 0.4),
+    0 0 12px rgba(0, 240, 255, 0.2);
+}
+
+.glow-text-lg {
+  color: #00f0ff;
+  text-shadow:
+    0 0 15px rgba(0, 240, 255, 0.6),
+    0 0 30px rgba(0, 240, 255, 0.4),
+    0 0 45px rgba(0, 240, 255, 0.2);
+}
+
+.glow-text-blue {
+  color: #0066ff;
+  text-shadow:
+    0 0 10px rgba(0, 102, 255, 0.5),
+    0 0 20px rgba(0, 102, 255, 0.3),
+    0 0 30px rgba(0, 102, 255, 0.15);
+}
+
+.glow-text-purple {
+  color: #a64dff;
+  text-shadow:
+    0 0 10px rgba(166, 77, 255, 0.5),
+    0 0 20px rgba(166, 77, 255, 0.3),
+    0 0 30px rgba(166, 77, 255, 0.15);
+}
+
+/**
+ * Glow box effects
+ * Box shadow glow for containers
+ */
+.glow-box {
+  box-shadow:
+    0 0 20px rgba(0, 240, 255, 0.2),
+    inset 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+.glow-box-blue {
+  box-shadow:
+    0 0 20px rgba(0, 102, 255, 0.2),
+    inset 0 0 20px rgba(0, 102, 255, 0.05);
+}
+
+.glow-box-purple {
+  box-shadow:
+    0 0 20px rgba(166, 77, 255, 0.2),
+    inset 0 0 20px rgba(166, 77, 255, 0.05);
+}
+
+/**
+ * Enhanced Button Styles
+ * Translucent background with gradient border and glow effect
+ */
+.btn-neon {
+  position: relative;
+  background: rgba(9, 9, 11, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  background-image:
+    linear-gradient(rgba(9, 9, 11, 0.6), rgba(9, 9, 11, 0.6)),
+    linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.3) 0%,
+      rgba(0, 102, 255, 0.2) 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #00f0ff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  will-change: box-shadow;
+}
+
+.btn-neon:hover {
+  box-shadow:
+    0 0 20px rgba(0, 240, 255, 0.4),
+    inset 0 0 20px rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.5);
+}
+
+.btn-neon:active {
+  transform: scale(0.98);
+}
+
+/**
+ * Primary CTA Button
+ */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, #00f0ff 0%, #0066ff 100%);
+  color: #09090b;
+  font-weight: 700;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/**
+ * Card Styles with Gradient Border
+ */
+.card-glow {
+  position: relative;
+  background: rgba(38, 38, 41, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  background-image:
+    linear-gradient(rgba(38, 38, 41, 0.5), rgba(38, 38, 41, 0.5)),
+    linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.2) 0%,
+      rgba(166, 77, 255, 0.1) 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all 0.3s ease;
+  will-change: box-shadow, transform;
+}
+
+.card-glow:hover {
+  background-image:
+    linear-gradient(rgba(38, 38, 41, 0.6), rgba(38, 38, 41, 0.6)),
+    linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.4) 0%,
+      rgba(166, 77, 255, 0.2) 100%
+    );
+  box-shadow:
+    0 0 30px rgba(0, 240, 255, 0.2),
+    inset 0 0 20px rgba(0, 240, 255, 0.05);
+  transform: translateY(-4px);
+}
+
+/**
+ * Gradient Backgrounds
+ */
+
+/**
+ * Gradient backgrounds
+ * Subtle gradient accents
+ */
+.gradient-cyan-to-blue {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 240, 255, 0.1) 0%,
+    rgba(0, 102, 255, 0.05) 100%
+  );
+}
+
+.gradient-blue-to-purple {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 255, 0.1) 0%,
+    rgba(166, 77, 255, 0.05) 100%
+  );
+}
+
+/**
+ * Animate entrance effects
+ */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(0, 240, 255, 0.5),
+      0 0 20px rgba(0, 240, 255, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(0, 240, 255, 0.7),
+      0 0 30px rgba(0, 240, 255, 0.5);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/**
+ * Smooth scrolling
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/**
+ * Custom scrollbar styling
+ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(9, 9, 11, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: rgba(0, 240, 255, 0.3) rgba(9, 9, 11, 0.3);
+  scrollbar-width: thin;
+}
