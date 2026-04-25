@@ -25,8 +25,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Previene el scroll horizontal global */
 html,
 body {
+  max-width: 100%;
   overflow-x: hidden;
 }
 

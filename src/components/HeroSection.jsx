@@ -145,7 +145,7 @@ export const HeroSection = () => {
         <div className="mt-auto flex w-full flex-col items-center justify-between gap-12 pb-4 md:flex-row md:items-end md:pb-10">
           {/* Left: Description & Button */}
           <div className="hero-description-container pointer-events-auto flex max-w-4xl flex-col items-center text-center md:items-start md:text-left">
-            <p className="text-balance text-[12px] leading-relaxed tracking-wide text-zinc-300 sm:text-[17px] md:max-w-[650px]">
+            <p className="text-balance text-[12px] leading-relaxed tracking-wide text-zinc-300 sm:text-[17px] md:max-w-162.5">
               Desde conceptualización hasta lanzamiento, optimizamos cada
               detalle para impulsar tu crecimiento.
             </p>
