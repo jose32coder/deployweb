@@ -79,7 +79,7 @@ export const Footer = () => {
           </div>
 
           {/* Columna Derecha (Enlaces usando Flex) */}
-          <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap gap-8 md:gap-4 lg:gap-8 w-full lg:w-7/12 justify-between">
+          <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap gap-8 md:gap-4 lg:gap-8 w-full lg:w-7/12 justify-center">
             {/* Columna Servicios */}
             <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
               <h4 className="text-sm font-medium text-gray-500 mb-2">
@@ -89,174 +89,121 @@ export const Footer = () => {
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Diseño de Producto
+                Landing Pages
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Desarrollo
+                Full Pages
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Estrategia GTM
+                Aplicaciones móviles
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Apps de Salud
+                E-commerces
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Desarrollo de IA
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Desarrollo IoT
+                Automatizaciones
               </Link>
             </div>
 
-            {/* Columna Deploy */}
-            <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
-              <h4 className="text-sm font-medium text-gray-500 mb-2">Deploy</h4>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Deploy Enterprise
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Deploy Agentic
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Deploy IntentIQ
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Comparar Deploy
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Deploy GIS
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Deploy Red Team
-              </Link>
-            </div>
-
-            {/* Columna Demos */}
-            <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
-              <h4 className="text-sm font-medium text-gray-500 mb-2">Demos</h4>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Agentes de Voz
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                UI Generativa
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                IA de Sentimiento
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Detector de Mentiras
-              </Link>
-            </div>
-
-            {/* Columna Recursos */}
+            {/* Columna Proyectos */}
             <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
               <h4 className="text-sm font-medium text-gray-500 mb-2">
-                Recursos
+                Proyectos
               </h4>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Open Deploy
+                EVP
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Plataforma Clinix IA
+                AFM
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Clinix IA
+                Rifas web
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Synergies4
+                App
+              </Link>
+            </div>
+
+            {/* Columna Contactos */}
+            <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">
+                Contactos
+              </h4>
+              <Link
+                href="#"
+                className="text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                Instagram
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Curehire
+                LinkedIn
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Feature
+                Correo
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Vidzee
+                GitHub
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Rhym3
+                WhatsApp
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                OWASP
+                Telegram
+              </Link>
+            </div>
+
+            <div className="flex flex-col space-y-4 w-[45%] md:w-auto">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">Equipo</h4>
+              <Link
+                href="#"
+                className="text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                Jesus Mura
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-300 hover:text-white transition-colors"
               >
-                Contacto
+                Jose Lopez
               </Link>
             </div>
           </div>
