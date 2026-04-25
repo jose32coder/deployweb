@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { initializeGSAP } from "@/lib/gsap";
 import Navbar from "@/components/Navbar";
 import BackgroundGrid from "@/components/BackgroundGrid";
+import { Footer } from "@/components/Footer";
 
 /**
  * Client-side layout wrapper
@@ -17,9 +18,10 @@ export default function RootLayoutClient({ children }) {
   return (
     <>
       <BackgroundGrid />
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
+        <Footer />
       </div>
     </>
   );
