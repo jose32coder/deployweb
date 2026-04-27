@@ -25,7 +25,7 @@ const SERVICES = [
       "Frontend Platforms",
       "Backend APIs",
       "Mobile Apps",
-      "Cloud Ops",
+      "Cloud & DevOps",
     ],
   },
   {
@@ -51,7 +51,7 @@ const SERVICES = [
       "Market Research",
       "Growth Hacking",
       "SEO Strategy",
-      "Marketing",
+      "Performance Marketing",
     ],
   },
 ];
@@ -162,19 +162,19 @@ export default function ServicesSection() {
       </section>
 
       {/* VERSION DESKTOP: Se muestra solo en LG (1024px+) */}
-      <section className="hidden lg:flex h-screen items-center overflow-hidden">
+      <section className="services-desktop hidden h-screen items-center overflow-hidden pt-24 pb-8 lg:flex">
         <div
           ref={pinRef}
-          className="flex h-full w-fit items-center px-[10vw] will-change-transform"
+          className="services-track flex h-full w-fit items-center px-[10vw] will-change-transform"
         >
           {/* Texto Intro */}
-          <div className="w-[40vw] shrink-0 pr-20">
-            <h2 className="text-8xl font-bold tracking-tighter text-white">
+          <div className="services-intro w-[40vw] shrink-0 pr-20">
+            <h2 className="services-title text-8xl font-bold tracking-tighter text-white">
               Our
               <br />
               Services
             </h2>
-            <p className="mt-8 text-xl text-zinc-400 max-w-xs">
+            <p className="services-lead mt-8 max-w-xs text-xl text-zinc-400">
               Digital solutions that transform businesses and drive innovation.
             </p>
           </div>
@@ -183,24 +183,24 @@ export default function ServicesSection() {
           {SERVICES.map((service, i) => (
             <div
               key={service.id}
-              className={`card-${i} flex h-[70vh] w-[50vw] shrink-0 items-center justify-center px-10`}
+              className={`services-card-shell card-${i} flex h-[70vh] w-[50vw] shrink-0 items-center justify-center px-10`}
             >
-              <div className="relative h-full w-full rounded-[3rem] border border-white/10 bg-white/5 p-12 backdrop-blur-2xl flex flex-col justify-center">
-                <span className="absolute top-10 left-12 text-6xl font-bold text-white/5">
+              <div className="services-card relative flex h-full w-full flex-col justify-center rounded-[3rem] border border-white/10 bg-white/5 p-12 backdrop-blur-2xl">
+                <span className="services-card-number absolute top-10 left-12 text-6xl font-bold text-white/5">
                   {service.number}
                 </span>
                 <div className={`card-content-${i}`}>
-                  <h3 className="text-7xl font-black italic tracking-tighter text-white">
+                  <h3 className="services-card-title text-7xl font-black italic tracking-tighter text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-6 text-xl text-zinc-300 max-w-md">
+                  <p className="services-card-description mt-6 max-w-md text-xl text-zinc-300">
                     {service.description}
                   </p>
-                  <div className="mt-10 grid grid-cols-2 gap-4">
+                  <div className="services-card-list mt-10 grid grid-cols-2 gap-4">
                     {service.services.map((s, idx) => (
                       <div
                         key={idx}
-                        className="flex items-center gap-3 text-zinc-400"
+                        className="services-card-item flex items-center gap-3 text-zinc-400"
                       >
                         <div className="h-2 w-2 rounded-full bg-indigo-500" />
                         {s}

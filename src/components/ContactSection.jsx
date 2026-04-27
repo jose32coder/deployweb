@@ -55,27 +55,27 @@ export const ContactSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#09090b] py-24 md:py-40"
+      className="contact-shell relative flex w-full flex-col items-center justify-center overflow-hidden bg-[#09090b] py-24 md:py-40"
       id="contact"
     >
       <Container
         maxWidth="max-w-7xl"
-        className="z-10 relative px-6 md:px-12 w-full"
+        className="contact-content relative z-10 w-full px-6 md:px-12"
       >
-        <div className="flex flex-col lg:flex-row justify-between gap-12 xl:gap-8">
+        <div className="contact-grid flex flex-col justify-between gap-12 lg:flex-row xl:gap-8">
           {/* Left Column: Title */}
-          <div className="w-full flex flex-col justify-start">
+          <div className="contact-left w-full flex flex-col justify-start">
             <div ref={titleRef} className="flex flex-col gap-1 overflow-hidden">
               {/* Animamos las líneas por separado para el efecto "de abajo hacia arriba" */}
-              <h2 className="title-line text-[clamp(2rem,8vw,5rem)] lg:text-[4rem] xl:text-[4rem] font-black leading-[0.95] tracking-tighter text-white">
+              <h2 className="title-line contact-title text-[clamp(2rem,8vw,5rem)] font-black leading-[0.95] tracking-tighter text-white lg:text-[4rem] xl:text-[4rem]">
                 CONECTEMOS <br />Y DESPLEGUEMOS
               </h2>
             </div>
           </div>
 
           {/* Right Column: Form */}
-          <div ref={formRef} className="w-full flex flex-col">
-            <div className="form-element mb-2 text-zinc-400 font-light text-sm md:text-base leading-relaxed max-w-lg">
+          <div ref={formRef} className="contact-form-wrap w-full flex flex-col">
+            <div className="form-element contact-lead mb-2 max-w-lg text-sm leading-relaxed font-light text-zinc-400 md:text-base">
               Hablemos sobre tu próxima gran idea. Usa el formulario para
               contarnos más, o simplemente envíanos un correo a{" "}
               <a
@@ -86,9 +86,9 @@ export const ContactSection = () => {
               </a>
             </div>
 
-            <form className="flex flex-col gap-2 w-full">
+            <form className="contact-form flex w-full flex-col gap-2">
               {/* Row: Name & Last Name */}
-              <div className="flex flex-col sm:flex-row gap-8 w-full">
+              <div className="contact-row flex w-full flex-col gap-8 sm:flex-row">
                 <div className="form-element flex flex-col gap-2 w-full">
                   <label className="text-zinc-300 text-sm font-medium tracking-wide">
                     Nombre <span className="text-indigo-500">*</span>
@@ -136,7 +136,7 @@ export const ContactSection = () => {
               </div>
 
               {/* Row: Service & Budget */}
-              <div className="flex flex-col sm:flex-row gap-8 w-full">
+              <div className="contact-row flex w-full flex-col gap-8 sm:flex-row">
                 <div className="form-element flex flex-col gap-2 w-full">
                   <label className="text-zinc-300 text-sm font-medium tracking-wide">
                     Servicio de Interés{" "}
@@ -230,10 +230,10 @@ export const ContactSection = () => {
               </div>
 
               {/* Submit Button */}
-              <div className="form-element mt-6">
+              <div className="form-element contact-submit mt-6">
                 <button
                   type="submit"
-                  className="group relative cursor-pointer rounded-full border border-white/10 bg-indigo-500/20 px-8 py-3.5 text-sm font-medium text-white shadow-[0_0_20px_rgba(99,102,241,0.15)] backdrop-blur-xl transition-all hover:border-white/20 hover:bg-indigo-500/30 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)] w-full sm:w-auto overflow-hidden"
+                  className="contact-btn group relative w-full cursor-pointer overflow-hidden rounded-full border border-white/10 bg-indigo-500/20 px-8 py-3.5 text-sm font-medium text-white shadow-[0_0_20px_rgba(99,102,241,0.15)] backdrop-blur-xl transition-all hover:border-white/20 hover:bg-indigo-500/30 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)] sm:w-auto"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-white/5 to-indigo-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
                   Enviar Mensaje

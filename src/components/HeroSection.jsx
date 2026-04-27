@@ -80,7 +80,7 @@ export const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#09090b]"
+      className="hero-shell relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#09090b]"
     >
       {/* Background Lighting Effects */}
       <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
@@ -112,10 +112,10 @@ export const HeroSection = () => {
       </div>
 
       {/* Centered Globe Container */}
-      <div className="absolute bottom-68 md:bottom-0 inset-0 z-10 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 bottom-68 z-10 flex items-center justify-center pointer-events-none md:bottom-0">
         <div
           ref={globeRef}
-          className="pointer-events-auto h-[100vmin] w-[100vmin] max-h-[850px] max-w-[850px] mix-blend-screen will-change-transform sm:h-[80vmin] sm:w-[80vmin]"
+          className="hero-globe-shell pointer-events-auto h-[100vmin] w-[100vmin] max-h-[850px] max-w-[850px] mix-blend-screen will-change-transform sm:h-[80vmin] sm:w-[80vmin]"
         >
           <ParticleGlobe />
         </div>
@@ -124,32 +124,32 @@ export const HeroSection = () => {
       {/* Main Content */}
       <Container
         maxWidth="max-w-none"
-        className="pointer-events-none relative z-30 flex min-h-screen w-full flex-col items-center px-6 py-12 md:px-12 lg:px-20 sm:py-16"
+        className="hero-content pointer-events-none relative z-30 flex min-h-screen w-full flex-col items-center px-6 py-12 sm:py-16 md:px-12 lg:px-20"
       >
         {/* Main Center Area */}
-        <div className="flex flex-1 flex-col mt-20 sm:mt-0 items-center justify-center text-center">
+        <div className="hero-main mt-12 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
           <div
             ref={titleRef}
-            className="hero-title flex flex-col items-center gap-1 perspective-1000 will-change-transform"
+            className="hero-title hero-title-block flex flex-col items-center gap-1 perspective-1000 will-change-transform"
           >
-            <span className="inline-block py-2 text-[clamp(2.4rem,11.7vw,7.8rem)] md:text-[clamp(2.4rem,11vw,7.8rem)] font-light leading-[0.2] sm:leading-[0.6] tracking-tighter text-white">
+            <span className="hero-title-line-one inline-block py-2 text-[clamp(2.4rem,11.7vw,7.8rem)] font-light leading-[0.2] tracking-tighter text-white sm:leading-[0.6] md:text-[clamp(2.4rem,11vw,7.8rem)]">
               Desplegamos
             </span>
-            <span className="bg-clip-text bg-linear-to-r from-blue-400 via-indigo-300 to-white font-black italic text-transparent text-[clamp(2.1rem,11.7vw,7.5rem)] leading-[1.1] tracking-tighter py-2 px-4">
+            <span className="hero-title-line-two bg-clip-text bg-linear-to-r from-blue-400 via-indigo-300 to-white px-4 py-2 text-[clamp(2.1rem,11.7vw,7.5rem)] font-black italic leading-[1.1] tracking-tighter text-transparent">
               Experiencias Digitales
             </span>
           </div>
         </div>
 
         {/* Bottom Section (Full Width Layout) */}
-        <div className="mt-auto flex w-full flex-col items-center justify-between gap-12 pb-4 md:flex-row md:items-end md:pb-10">
+        <div className="hero-bottom mt-auto flex w-full flex-col items-center justify-between gap-12 pb-4 md:flex-row md:items-end md:pb-10">
           {/* Left: Description & Button */}
           <div className="hero-description-container pointer-events-auto flex max-w-4xl flex-col items-center text-center md:items-start md:text-left">
             <p className="text-balance text-[12px] leading-relaxed tracking-wide text-zinc-300 sm:text-[17px] md:max-w-162.5">
               Desde conceptualización hasta lanzamiento, optimizamos cada
               detalle para impulsar tu crecimiento.
             </p>
-            <button className="hero-btn group mt-4 md:mt-8 cursor-pointer rounded-full border border-white/10 bg-indigo-500/20 px-10 py-3.5 text-[17px] font-medium text-white shadow-[0_0_20px_rgba(99,102,241,0.15)] backdrop-blur-xl transition-all hover:border-white/20 hover:bg-indigo-500/30 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)]">
+            <button className="hero-btn group mt-4 cursor-pointer rounded-full border border-white/10 bg-indigo-500/20 px-10 py-3.5 text-[17px] font-medium text-white shadow-[0_0_20px_rgba(99,102,241,0.15)] backdrop-blur-xl transition-all hover:border-white/20 hover:bg-indigo-500/30 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)] md:mt-8">
               Despleguemos tu proyecto
             </button>
           </div>
@@ -172,11 +172,11 @@ export const HeroSection = () => {
 export default HeroSection;
 
 const StatItem = ({ label, value }) => (
-  <div className="group flex items-center gap-3">
-    <div className="text-2xl font-bold tracking-tighter text-white sm:text-3xl md:text-4xl">
+  <div className="hero-stat group flex items-center gap-3">
+    <div className="hero-stat-value text-2xl font-bold tracking-tighter text-white sm:text-3xl md:text-4xl">
       {value}
     </div>
-    <div className="flex flex-col text-[9px] font-bold uppercase tracking-widest leading-[1.1] text-zinc-500 transition-colors group-hover:text-zinc-300 sm:text-[10px]">
+    <div className="hero-stat-label flex flex-col text-[9px] font-bold leading-[1.1] tracking-widest text-zinc-500 uppercase transition-colors group-hover:text-zinc-300 sm:text-[10px]">
       {label.split(" ").map((word, i) => (
         <span key={i}>{word}</span>
       ))}
