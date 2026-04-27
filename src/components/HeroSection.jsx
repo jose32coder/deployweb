@@ -156,9 +156,9 @@ export const HeroSection = () => {
 
           {/* Right: Stats (Horizontal Layout per Stat) */}
           <div className="hero-stats-wrapper pointer-events-auto flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:justify-end lg:gap-20">
-            <StatItem label="Projects Delivered" value="50+" />
-            <StatItem label="Client Satisfaction" value="100%" />
-            <StatItem label="Support Available" value="24/7" />
+            <StatItem label="Proyectos Entregados" value="50+" />
+            <StatItem label="Satisfacción del Cliente" value="100%" />
+            <StatItem label="Soporte Disponible" value="24/7" />
           </div>
         </div>
       </Container>

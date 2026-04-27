@@ -15,15 +15,15 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Deploy - High Performance Web Platform",
+  title: "Deploy - Plataforma Web de Alto Rendimiento",
   description:
-    "A sophisticated web platform built with Next.js, GSAP, and Tailwind CSS",
+    "Una plataforma web sofisticada construida con Next.js, GSAP y Tailwind CSS",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${geistMono.variable} ${jakarta.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-deep-dark-950 text-deep-dark-50 font-sans">
