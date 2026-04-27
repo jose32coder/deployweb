@@ -17,41 +17,41 @@ if (typeof window !== "undefined") {
 const SERVICES = [
   {
     id: "development",
-    title: "Development",
+    title: "Desarrollo",
     number: "01",
     description:
-      "Robust, scalable products across web and mobile—from elegant UIs to reliable APIs and automated DevOps.",
+      "Productos robustos y escalables para web y móvil—desde interfaces elegantes hasta APIs confiables y DevOps automatizado.",
     services: [
-      "Frontend Platforms",
-      "Backend APIs",
-      "Mobile Apps",
-      "Cloud & DevOps",
+      "Plataformas Frontend",
+      "APIs Backend",
+      "Apps Móviles",
+      "Operaciones Cloud",
     ],
   },
   {
     id: "product-design",
-    title: "Product Design",
+    title: "Diseño de Producto",
     number: "02",
     description:
-      "End-to-end product design—from research and UX flows to polished UI systems and developer-ready handoff.",
+      "Diseño de producto de principio a fin—desde investigación y flujos UX hasta sistemas de UI pulidos y entrega lista para desarrolladores.",
     services: [
-      "UX Design",
-      "Interface Design",
-      "Design Systems",
-      "Prototyping",
+      "Diseño UX",
+      "Diseño de Interfaz",
+      "Sistemas de Diseño",
+      "Prototipado",
     ],
   },
   {
     id: "gtm-strategy",
-    title: "GTM Strategy",
+    title: "Estrategia GTM",
     number: "03",
     description:
-      "Data-driven strategies to launch and scale your product, ensuring it reaches the right audience at the right time.",
+      "Estrategias basadas en datos para lanzar y escalar tu producto, asegurando que llegue a la audiencia correcta en el momento adecuado.",
     services: [
-      "Market Research",
+      "Investigación de Mercado",
       "Growth Hacking",
-      "SEO Strategy",
-      "Performance Marketing",
+      "Estrategia SEO",
+      "Marketing",
     ],
   },
 ];
@@ -117,10 +117,10 @@ export default function ServicesSection() {
       <section className="block lg:hidden py-20 px-6">
         <div className="mb-12">
           <h2 className="text-5xl font-bold tracking-tighter text-white">
-            Our Services
+            Nuestros Servicios
           </h2>
           <p className="mt-4 text-zinc-400">
-            Swipe to explore our capabilities.
+            Desliza para explorar nuestras capacidades.
           </p>
         </div>
 
@@ -170,12 +170,12 @@ export default function ServicesSection() {
           {/* Texto Intro */}
           <div className="services-intro w-[40vw] shrink-0 pr-20">
             <h2 className="services-title text-8xl font-bold tracking-tighter text-white">
-              Our
+              Nuestros
               <br />
-              Services
+              Servicios
             </h2>
-            <p className="services-lead mt-8 max-w-xs text-xl text-zinc-400">
-              Digital solutions that transform businesses and drive innovation.
+            <p className="mt-8 text-xl text-zinc-400 max-w-xs">
+              Soluciones digitales que transforman negocios e impulsan la innovación.
             </p>
           </div>
 
