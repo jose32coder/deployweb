@@ -1,49 +1,31 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import Link from "next/link";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
   const items = ["Trabajos", "Servicios", "Nosotros", "Contacto"];
 
-  useGSAP(
-    () => {
-      // Entrada suave desde arriba
-      gsap.from(navRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "expo.out",
-        delay: 0.2,
-      });
 
-      // Animación de los links con stagger
-      gsap.from(".nav-link", {
-        y: -20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.05,
-        ease: "power2.out",
-        delay: 0.6,
-      });
-    },
-    { scope: navRef },
-  );
+  // El estado inicial lo pone el HeroSection vía su master timeline.
+  // useGSAP aquí solo sirve para el toggle del menú móvil.
+  // (No disparamos animación de entrada propia — la coordina HeroSection)
+
 
   return (
     <nav
       ref={navRef}
+      data-navbar
       className="pointer-events-none fixed inset-x-0 top-0 z-50 pt-4 sm:pt-6"
     >
       <div className="mx-auto flex w-[94%] max-w-[1440px] items-center justify-between rounded-full border border-white/5 bg-black/20 px-6 py-3 backdrop-blur-md sm:px-8 sm:py-4">
         {/* Logo */}
         <div className="pointer-events-auto text-xl font-bold tracking-[0.2em] text-white sm:text-2xl">
-          <a href="/" className="">
+          <Link href="/" data-nav-logo className="nav-logo-text inline-block">
             DEPLOY
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -60,7 +42,7 @@ export const Navbar = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="pointer-events-auto hidden items-center gap-4 lg:flex">
+        <div className="nav-cta pointer-events-auto hidden items-center gap-4 lg:flex">
           <button className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white hover:text-black">
             Contáctanos
           </button>

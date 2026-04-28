@@ -5,7 +5,10 @@ export function getSpherePositions(count, radius) {
     const v = Math.random();
     const theta = u * Math.PI * 2;
     const phi = Math.acos(2 * v - 1);
-    const radialBias = 1 - Math.pow(Math.random(), 8) * 0.01;
+    
+    // Retornamos a una cáscara un poco más definida pero conservando leve volumen
+    const radialBias = 1 - Math.pow(Math.random(), 4) * 0.15;
+    
     const r = radius * radialBias;
     const s = Math.sin(phi);
     data[i * 3] = Math.cos(theta) * s * r;

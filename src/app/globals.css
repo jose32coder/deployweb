@@ -23,6 +23,7 @@ body {
   );
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* color: #a1b4ff; */
 }
 
 /* Previene el scroll horizontal global */
@@ -55,4 +56,60 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: #27272a #09090b;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   GSAP Initial States — Previene FOUC (Flash of Unstyled Content)
+   Los elementos nacen ocultos desde el HTML/CSS; GSAP los anima con
+   inline styles que tienen mayor especificidad y sobrescriben estas reglas.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Navbar */
+[data-navbar] {
+  opacity: 0;
+  transform: translateY(-34px);
+}
+
+.nav-link {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.nav-cta {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
+.nav-logo-text {
+  opacity: 0;
+}
+
+/* Hero — texto de fondo DEPLOY */
+.hero-bg-deploy {
+  opacity: 1;
+  transform: scale(0.88) translateZ(80px);
+}
+
+/* Hero — títulos principales */
+.hero-title span {
+  opacity: 0;
+  transform: translateY(90px) rotateX(-35deg);
+}
+
+/* Hero — descripción y stats */
+.hero-description-container,
+.hero-stats-wrapper > div {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Hero — luces de fondo */
+.hero-bg-lights {
+  opacity: 0;
+}
+
+/* Hero — globo de partículas */
+.hero-globe-shell {
+  opacity: 0;
+  filter: blur(20px);
 }

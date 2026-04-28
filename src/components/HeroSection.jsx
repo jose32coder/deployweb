@@ -9,70 +9,178 @@ import ParticleGlobe from "@/components/ParticleGlobe";
 export const HeroSection = () => {
   const containerRef = useRef(null);
   const globeRef = useRef(null);
-  const titleRef = useRef(null);
+  const bgTextRef = useRef(null);
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+      // ─── Estado inicial: todo invisible (excepto DEPLOY que empieza visible y sobresaliente) ──
+      gsap.set(bgTextRef.current, {
+        scale: 0.35, // Aumentado para mejor legibilidad (especialmente en móvil)
+        opacity: 1,
+        z: 0,
+        filter: "blur(0px)",
+      });
 
-      // Animación inicial del fondo/esfera
-      tl.from(
-        globeRef.current,
+      gsap.set(globeRef.current, {
+        opacity: 0,
+        filter: "blur(20px)",
+      });
+
+      gsap.set(".hero-title span", {
+        y: 90,
+        opacity: 0,
+        rotateX: -35,
+      });
+
+      gsap.set([".hero-description-container", ".hero-stats-wrapper > div"], {
+        y: 24,
+        opacity: 0,
+      });
+
+      gsap.set(".hero-bg-lights", { opacity: 0 });
+
+      // Navbar: ocultar desde el principio con querySelector (fuera del scope)
+      const navEl = document.querySelector("[data-navbar]");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const navCta = document.querySelector(".nav-cta");
+      const navLogo = document.querySelector(".nav-logo-text");
+
+      if (navEl) gsap.set(navEl, { opacity: 0, y: -34 });
+      if (navLinks.length) gsap.set(navLinks, { opacity: 0, y: -16 });
+      if (navCta) gsap.set(navCta, { opacity: 0, y: -14 });
+      if (navLogo) gsap.set(navLogo, { opacity: 0 });
+
+      // ─── Master Timeline ──────────────────────────────────────────────────
+      const master = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+      // 1. Efecto "Typing" (escribir DEPLOY)
+      master.to(
+        ".deploy-char",
         {
-          opacity: 0,
-          filter: "blur(15px)",
-          duration: 2.8,
+          opacity: 1,
+          duration: 0.15, // Un poco más lento cada letra
+          stagger: 0.15,  // Más espacio entre letras
+          ease: "none",
+        },
+        0.4, // Un pequeño respiro inicial
+      );
+
+      // 2. DEPLOY se engrandece y se retira al fondo
+      master.to(
+        bgTextRef.current,
+        {
+          opacity: 0.03,
+          scale: 1,
+          filter: "blur(2px)",
+          duration: 1.6, // Escalado más suave y cinemático
+          ease: "expo.inOut",
+        },
+        "+=0.4", // Pausa tras terminar de escribir
+      );
+
+      // 3. Luces de fondo aparecen
+      master.to(
+        ".hero-bg-lights",
+        {
+          opacity: 1,
+          duration: 1.5,
           ease: "power2.inOut",
         },
-        0.2,
+        2.5,
       );
 
-      // Revelado de textos
-      tl.from(
+      // 4. Navbar entra
+      if (navEl)
+        master.to(
+          navEl,
+          { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" },
+          2.8,
+        );
+
+      if (navLinks.length)
+        master.to(
+          navLinks,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "power2.out",
+          },
+          3.1,
+        );
+
+      const navTargets = [navCta, navLogo].filter(Boolean);
+      if (navTargets.length)
+        master.to(
+          navTargets,
+          { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+          3.2,
+        );
+
+      // 5. Globo entra
+      master.to(
+        globeRef.current,
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.8,
+          ease: "power2.inOut",
+        },
+        2.8,
+      );
+
+      // 6. Títulos hero entran en cascada
+      master.to(
         ".hero-title span",
         {
-          y: 80,
-          opacity: 0,
-          rotateX: -30,
-          stagger: 0.2,
-          duration: 2,
-          clearProps: "all",
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          stagger: 0.15,
+          duration: 1.2,
+          ease: "expo.out",
         },
-        0.4,
+        3.1,
       );
 
-      // Animación sincronizada para descripción y stats
-      tl.from(
+      // 7. Descripción y stats
+      master.to(
         [".hero-description-container", ".hero-stats-wrapper > div"],
         {
-          y: 20,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 1.2,
-          clearProps: "all",
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 0.8,
+          ease: "power2.out",
         },
-        0.8, // Empezamos antes para que se sienta más fluido
+        3.6,
       );
 
-      // Animación de flotación ultra suave (Sin stutter)
-      gsap.to(".hero-title", {
-        y: -12,
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        force3D: true,
-      });
+      // ─── Loops ambientales (una vez visible todo) ─────────────────────────
+      master.call(
+        () => {
+          gsap.to(".hero-title", {
+            y: -12,
+            duration: 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            force3D: true,
+          });
 
-      // Flotación del globo corregida
-      gsap.to(globeRef.current, {
-        y: 12,
-        duration: 6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        force3D: true,
-      });
+          gsap.to(globeRef.current, {
+            y: 12,
+            duration: 6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            force3D: true,
+          });
+        },
+        null,
+        3.8,
+      );
     },
     { scope: containerRef },
   );
@@ -81,9 +189,10 @@ export const HeroSection = () => {
     <section
       ref={containerRef}
       className="hero-shell relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#09090b]"
+      style={{ perspective: "900px" }}
     >
       {/* Background Lighting Effects */}
-      <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+      <div className="hero-bg-lights pointer-events-none absolute inset-0 z-20 overflow-hidden">
         <div
           className="absolute left-[-15%] top-[-15%] h-[180vh] w-[40vw] rotate-[-31deg] origin-top-left opacity-30"
           style={{
@@ -104,15 +213,31 @@ export const HeroSection = () => {
         />
       </div>
 
-      {/* Background Text (DEPLOY) */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center opacity-[0.03]">
-        <h2 className="select-none text-[30vw] font-bold uppercase leading-none tracking-tighter text-white/50">
-          DEPLOY
+      {/* Background Text (DEPLOY) — animado con GSAP */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <h2
+          ref={bgTextRef}
+          className="hero-bg-deploy flex items-center justify-center whitespace-nowrap select-none text-[30vw] font-bold uppercase leading-none tracking-tighter text-white/50"
+          style={{
+            willChange: "transform, opacity, filter",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <div className="relative flex items-center">
+            {"DEPLOY".split("").map((char, i) => (
+              <span key={i} className="deploy-char inline-block opacity-0">
+                {char}
+              </span>
+            ))}
+          </div>
         </h2>
       </div>
 
       {/* Centered Globe Container */}
-      <div className="absolute inset-0 bottom-68 z-10 flex items-center justify-center pointer-events-none md:bottom-0">
+      <div className="absolute inset-0 bottom-[25%] z-10 flex items-center justify-center pointer-events-none md:bottom-0">
         <div
           ref={globeRef}
           className="hero-globe-shell pointer-events-auto h-[100vmin] w-[100vmin] max-h-[850px] max-w-[850px] mix-blend-screen will-change-transform sm:h-[80vmin] sm:w-[80vmin]"
@@ -127,15 +252,12 @@ export const HeroSection = () => {
         className="hero-content pointer-events-none relative z-30 flex min-h-screen w-full flex-col items-center px-6 py-12 sm:py-16 md:px-12 lg:px-20"
       >
         {/* Main Center Area */}
-        <div className="hero-main mt-12 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
-          <div
-            ref={titleRef}
-            className="hero-title hero-title-block flex flex-col items-center gap-1 perspective-1000 will-change-transform"
-          >
-            <span className="hero-title-line-one inline-block py-2 text-[clamp(2.4rem,11.7vw,7.8rem)] font-light leading-[0.2] tracking-tighter text-white sm:leading-[0.6] md:text-[clamp(2.4rem,11vw,7.8rem)]">
+        <div className="hero-main mt-20 flex flex-1 flex-col items-center justify-center text-center sm:mt-0">
+          <div className="hero-title hero-title-block flex flex-col items-center gap-1 perspective-1000 will-change-transform">
+            <span className="hero-title-line-one inline-block py-2 text-[clamp(2rem,8vw,7.5rem)] sm:text-[clamp(2.1rem,11.7vw,7.5rem)] font-light leading-[0.2] tracking-tighter text-white sm:leading-[0.6] md:text-[clamp(2.4rem,11vw,7.8rem)]">
               Desplegamos
             </span>
-            <span className="hero-title-line-two bg-clip-text bg-linear-to-r from-blue-400 via-indigo-300 to-white px-4 py-2 text-[clamp(2.1rem,11.7vw,7.5rem)] font-black italic leading-[1.1] tracking-tighter text-transparent">
+            <span className="hero-title-line-two bg-clip-text bg-linear-to-r from-blue-400 via-indigo-300 to-white px-4 py-2 text-[clamp(2rem,8vw,7.5rem)] sm:text-[clamp(2.1rem,11.7vw,7.5rem)] font-black italic leading-6 sm:leading-[1.1] tracking-tighter text-transparent">
               Experiencias Digitales
             </span>
           </div>

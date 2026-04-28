@@ -59,62 +59,130 @@ function ArcCarousel() {
   const items = buildArcItems(TECHNOLOGIES, ARC_ITEMS_COUNT);
 
   useEffect(() => {
-    let offset = 0;
-    const speed = 0.03; // Reduced speed for smoother motion
+    if (!trackRef.current) return;
 
-    function render() {
+    const children = Array.from(trackRef.current.children);
+
+    /* ─────────────────────────────────────────────
+       Entrada secuencial
+    ───────────────────────────────────────────── */
+    gsap.set(children, {
+      opacity: 0,
+      scale: 0.6,
+      y: 80,
+      filter: "blur(12px)",
+    });
+
+    gsap.to(children, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1.2,
+      stagger: 0.06,
+      ease: "expo.out",
+    });
+
+    let offset = 0;
+
+    const getConfig = () => {
+      const width = window.innerWidth;
+
+      if (width < 768) {
+        return {
+          radius: 850,
+          span: 140,
+          speed: 0.06,
+        };
+      }
+
+      if (width < 1024) {
+        return {
+          radius: 1800,
+          span: 95,
+          speed: 0.05,
+        };
+      }
+
+      return {
+        radius: 3000,
+        span: 75,
+        speed: 0.04,
+      };
+    };
+
+    let config = getConfig();
+
+    const handleResize = () => {
+      config = getConfig();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    const render = () => {
       if (!trackRef.current) return;
+
       const children = trackRef.current.children;
+      const { radius, span, speed } = config;
 
       for (let i = 0; i < children.length; i++) {
         const slotAngle =
-          ((i / ARC_ITEMS_COUNT) * ARC_SPAN_DEG - ARC_SPAN_DEG / 2 + offset) %
-          ARC_SPAN_DEG;
+          ((i / ARC_ITEMS_COUNT) * span - span / 2 + offset) % span;
 
         let angle = slotAngle;
-        if (angle > ARC_SPAN_DEG / 2) angle -= ARC_SPAN_DEG;
-        if (angle < -ARC_SPAN_DEG / 2) angle += ARC_SPAN_DEG;
+
+        if (angle > span / 2) angle -= span;
+        if (angle < -span / 2) angle += span;
 
         const rad = (angle * Math.PI) / 180;
 
-        const x = Math.sin(rad) * ARC_RADIUS;
-        const y = -Math.cos(rad) * ARC_RADIUS + ARC_RADIUS;
+        const x = Math.sin(rad) * radius;
+        const y = -Math.cos(rad) * radius + radius;
 
-        const normalizedPos = Math.abs(angle) / (ARC_SPAN_DEG / 2);
-        const scale = 1 - normalizedPos * 0.2;
-        const opacity = 1 - normalizedPos * 0.8;
+        const normalizedPos = Math.abs(angle) / (span / 2);
 
-        const el = children[i];
-        el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale})`;
-        el.style.opacity = opacity;
-        el.style.zIndex = Math.round((1 - normalizedPos) * 100);
+        const scale = 1 - normalizedPos * 0.25;
+        const opacity = 1 - normalizedPos * 0.85;
+
+        gsap.set(children[i], {
+          x,
+          y,
+          xPercent: -50,
+          yPercent: -50,
+          scale,
+          opacity,
+          zIndex: Math.round((1 - normalizedPos) * 100),
+        });
       }
 
-      offset -= speed;
+      // Movimiento: izquierda → derecha
+      offset += speed;
+
       animRef.current = requestAnimationFrame(render);
-    }
+    };
 
     animRef.current = requestAnimationFrame(render);
+
     return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", handleResize);
+
+      if (animRef.current) {
+        cancelAnimationFrame(animRef.current);
+      }
     };
   }, []);
 
   return (
-    <div
-      className="relative w-full overflow-hidden"
-      style={{ height: "320px" }}
-    >
-
-
-      {/* Arc track — all items positioned absolutely from the center-bottom */}
+    <div className="relative h-[220px] w-full overflow-hidden md:h-[320px]">
       <div
         ref={trackRef}
-        className="absolute bottom-28 left-1/2"
+        // Ajustamos el bottom para que no esté tan enterrado
+        className="absolute bottom-10 left-1/2 md:bottom-28"
         style={{ width: 0, height: 0 }}
       >
         {items.map((tech, i) => {
           const Icon = tech.icon;
+
           return (
             <div
               key={i}
@@ -122,17 +190,18 @@ function ArcCarousel() {
               style={{ left: 0, top: 0 }}
             >
               <div
-                className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm md:h-[4.5rem] md:w-[4.5rem]"
+                className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/8 bg-white/4 backdrop-blur-sm md:h-18 md:w-18"
                 style={{
-                  boxShadow: `0 0 12px 2px ${tech.color}22`,
+                  boxShadow: `0 0 18px ${tech.color}25`,
                 }}
               >
                 <Icon
                   size={28}
                   color={tech.color}
-                  className="md:!w-[34px] md:!h-[34px]"
+                  className="md:h-[34px]! md:w-[34px]!"
                 />
               </div>
+
               <span className="whitespace-nowrap text-[10px] font-medium tracking-wide text-zinc-500 md:text-xs">
                 {tech.name}
               </span>
@@ -200,7 +269,7 @@ export default function TechStackSection() {
       />
 
       {/* Heading */}
-      <div className="relative z-10 mb-16 flex flex-col items-center gap-3 px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center">
         <span className="ts-sub inline-block rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-400">
           Stack Tecnológico
         </span>

@@ -88,3 +88,10 @@ Para mantener “memoria viva” del proyecto, cada cambio relevante debería re
 - Se centralizó la documentación operativa en `AGENTS.md`.
 - Se consolidaron lineamientos técnicos/visuales previos en este documento.
 - Se estableció esta bitácora como fuente única para seguimiento de decisiones.
+
+### 2026-04-28
+
+- Se rediseñó el preloader con una secuencia espacial cinematográfica (starfield + esfera energética + cohete 3D en profundidad).
+- Se implementó bloqueo total de scroll/interacciones mientras el preloader está activo.
+- Se añadió transición del texto `DEPLOY` hacia la posición real del logo en navbar para continuidad visual.
+- Se sincronizó el inicio de animaciones de `HeroSection` y `Navbar` al evento `deploy:preloader-complete` para evitar que se consuman detrás del overlay.

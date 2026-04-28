@@ -1,38 +1,29 @@
 "use client";
-import React from "react";
-import * as THREE from "three";
+import { useRef } from "react";
 
-export default function Rocket({ rocketRef, scale }) {
+export default function Rocket({ rocketRef, scale = 1 }) {
+  const internalRef = useRef();
+
   return (
-    <group ref={rocketRef} scale={scale}>
+    <group ref={rocketRef || internalRef} scale={scale}>
       {/* Main Body - Balanced thickness */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.052, 0.052, 0.16, 20]} />
-        <meshStandardMaterial
-          color="#ffffff"
-          metalness={0.3}
-          roughness={0.2}
-        />
+        <meshStandardMaterial color="#ffffff" metalness={0.3} roughness={0.2} />
       </mesh>
 
       {/* Bullet-shaped Rounded Nose */}
       <mesh position={[0, 0.08, 0]} scale={[1, 1.4, 1]}>
-        <sphereGeometry args={[0.052, 20, 20, 0, Math.PI * 2, 0, Math.PI * 0.5]} />
-        <meshStandardMaterial
-          color="#ffffff"
-          metalness={0.3}
-          roughness={0.2}
+        <sphereGeometry
+          args={[0.052, 20, 20, 0, Math.PI * 2, 0, Math.PI * 0.5]}
         />
+        <meshStandardMaterial color="#ffffff" metalness={0.3} roughness={0.2} />
       </mesh>
 
       {/* Engine Bell */}
       <mesh position={[0, -0.1, 0]}>
         <cylinderGeometry args={[0.035, 0.052, 0.04, 12]} />
-        <meshStandardMaterial
-          color="#222222"
-          metalness={0.8}
-          roughness={0.4}
-        />
+        <meshStandardMaterial color="#222222" metalness={0.8} roughness={0.4} />
       </mesh>
 
       {/* Porthole */}
@@ -51,7 +42,7 @@ export default function Rocket({ rocketRef, scale }) {
           <mesh position={[0.06, -0.05, 0]} rotation={[0, 0, -Math.PI * 0.08]}>
             <boxGeometry args={[0.055, 0.075, 0.007]} />
             <meshStandardMaterial
-              color="#ff3b3b" 
+              color="#ff3b3b"
               metalness={0.3}
               roughness={0.4}
             />
@@ -62,11 +53,7 @@ export default function Rocket({ rocketRef, scale }) {
       {/* Engine Glow */}
       <mesh position={[0, -0.14, 0]}>
         <coneGeometry args={[0.03, 0.08, 12]} />
-        <meshBasicMaterial 
-          color="#7799ff" 
-          transparent 
-          opacity={0.6} 
-        />
+        <meshBasicMaterial color="#7799ff" transparent opacity={0.6} />
       </mesh>
     </group>
   );

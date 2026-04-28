@@ -141,18 +141,24 @@ export default function ParticleGlobe({
     const rect = wrapper.getBoundingClientRect();
     const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     const ny = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
-    pointerRef.current.set(
-      nx * SPHERE_RADIUS * 1.3,
-      ny * SPHERE_RADIUS * 1.3,
-      0.14,
+    const px = nx * SPHERE_RADIUS * 1.3;
+    const py = ny * SPHERE_RADIUS * 1.3;
+
+    // Proyectamos el puntero sobre la superficie de la esfera usando la ecuación de la esfera.
+    // Esto asegura que en las "esquinas" el mouse baje en Z y siga reconociendo las partículas.
+    const distSq = px * px + py * py;
+    const pz = Math.sqrt(
+      Math.max(0, Math.pow(SPHERE_RADIUS * 1.05, 2) - distSq),
     );
+
+    pointerRef.current.set(px, py, pz);
     pointerStrengthRef.current = 1;
   };
 
   return (
     <div
       ref={wrapperRef}
-      className="h-full w-full"
+      className="h-full w-full touch-pan-y"
       onPointerMove={updatePointer}
       onPointerDown={(e) => {
         updatePointer(e);

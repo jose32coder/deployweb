@@ -75,7 +75,7 @@ export const ContactSection = () => {
 
           {/* Right Column: Form */}
           <div ref={formRef} className="contact-form-wrap w-full flex flex-col">
-            <div className="form-element contact-lead mb-2 max-w-lg text-sm leading-relaxed font-light text-zinc-400 md:text-base">
+            <div className="form-element contact-lead mb-4 max-w-lg text-sm leading-relaxed font-light text-zinc-400 md:text-base">
               Hablemos sobre tu próxima gran idea. Usa el formulario para
               contarnos más, o simplemente envíanos un correo a{" "}
               <a
@@ -235,7 +235,7 @@ export const ContactSection = () => {
                   type="submit"
                   className="contact-btn group relative w-full cursor-pointer overflow-hidden rounded-full border border-white/10 bg-indigo-500/20 px-8 py-3.5 text-sm font-medium text-white shadow-[0_0_20px_rgba(99,102,241,0.15)] backdrop-blur-xl transition-all hover:border-white/20 hover:bg-indigo-500/30 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)] sm:w-auto"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-white/5 to-indigo-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-indigo-500/0 via-white/5 to-indigo-500/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
                   Enviar Mensaje
                 </button>
               </div>
